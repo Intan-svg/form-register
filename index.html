@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .profile-pic-upload {
+            display: none;
+        }
+        .profile-pic-label {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .profile-pic-label:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center mb-6 text-gray-800">Create Account</h1>
+        
+        <form class="space-y-4">
+            <!-- Profile Picture Upload -->
+            <div class="flex flex-col items-center mb-4">
+                <input type="file" id="profile-pic" accept="image/*" class="profile-pic-upload">
+                <label for="profile-pic" class="profile-pic-label">
+                    <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden border-2 border-gray-300">
+                        <i class="fas fa-user text-4xl text-gray-400" id="profile-icon"></i>
+                        <img id="profile-preview" class="hidden w-full h-full object-cover">
+                    </div>
+                </label>
+                <span class="text-sm text-gray-500 mt-2">Click to upload profile picture</span>
+            </div>
+
+            <!-- Form Fields -->
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
+                <input type="text" id="name" autocomplete="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="email" id="email" autocomplete="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" autocomplete="new-password" minlength="8" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label for="whatsapp" class="block text-sm font-medium text-gray-700">Whatsapp</label>
+                <input type="number" id="whatsapp" autocomplete="new-password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Register
+            </button>
+        </form>
+
+        <p class="mt-4 text-center text-sm text-gray-600">
+            Already have an account? <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('profile-pic').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('profile-preview').src = event.target.result;
+                    document.getElementById('profile-preview').classList.remove('hidden');
+                    document.getElementById('profile-icon').classList.add('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
